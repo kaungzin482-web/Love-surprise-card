@@ -87,7 +87,7 @@
         
         <!-- မေးခွန်း အပိုင်း -->
         <div id="questionSection">
-            <h2 id="questionText">စိတ်ဆိုးပြေပြိး ကိုကို ပြန်ချစ်ဆော့နော် လိမ္မာတယ်.. 💞</h2>
+            <h2 id="questionText">စိတ်ဆိုးပြေပြိး ကိုကို ကို ပြန်ချစ်‌တော့နော် လိမ္မာတယ်.. 💞</h2>
             <div class="btn-container">
                 <button id="yesBtn" onclick="acceptLove()">Yes</button>
                 <button id="noBtn" onclick="rejectLove()">No</button>
