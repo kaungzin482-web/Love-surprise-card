@@ -1,1 +1,141 @@
 # Love-surprise-card
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Love Surprise</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Myanmar Standard', sans-serif;
+            overflow: hidden;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 320px;
+            width: 90%;
+        }
+
+        .gif-container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #ff4757;
+            color: white;
+        }
+
+        #noBtn {
+            background-color: #dfe4ea;
+            color: #2f3640;
+        }
+
+        /* စာလွှာ အပိုင်း ( सुरुမှာ ပိတ်ထားသည် ) */
+        #messageCard {
+            display: none;
+            text-align: left;
+        }
+
+        #messageCard p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card" id="mainCard">
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Cute Bears">
+        </div>
+        
+        <!-- မေးခွန်း အပိုင်း -->
+        <div id="questionSection">
+            <h2 id="questionText">ရှင်သန်ဖို့တောင် မဖြစ်သင့်တော့နိုင်ရဲ့လား ရဲ့ ကျနော် ရဲ့ နောက်ဆုံးနေရစ်တွေ.. 💞</h2>
+            <div class="btn-container">
+                <button id="yesBtn" onclick="acceptLove()">Yes</button>
+                <button id="noBtn" onclick="rejectLove()">No</button>
+            </div>
+        </div>
+
+        <!-- အချစ်စာလွှာ အပိုင်း (Yes နှိပ်မှပေါ်မည်) -->
+        <div id="messageCard">
+            <h3 style="color: #ff4757; text-align: center;">💌 ချစ်ရပါသော...</h3>
+            <p>
+                ဒီကမ္ဘာပေါ်မှာ လူတွေအများကြီးထဲက ကိုယ့်ရဲ့နောက်ဆုံးနေရစ်တွေထိ နာမည်ဘေးနားမှာ ရှိနေပေးလို့ ကျေးဇူးတင်ပါတယ်။ <br><br>
+                ရှင်သန်ခြင်းဆိုတာ မင်းနဲ့အတူရှိချိန်တိုင်းမှာ အပြည့်စုံဆုံးပဲ။ ကိုယ့်ရဲ့ဖြူစင်တဲ့ အချစ်တွေကို ဒီအချိန်တိုင်း လက်ခံပေးပါနော်... 💖<br><br>
+                <span style="float: right; font-weight: bold;">Love you so much! 🥰</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        let noClickCount = 0;
+        const messages = [
+            "သေချာစဥ်းစားပါဦး နော်... 🥺",
+            "တကယ်လား လူဆိုးလေး... 😢",
+            "No လို့ ဆက်မနှိပ်နဲ့တော့နော်... 😭",
+            "Yes ကိုပဲ နှိပ်လိုက်တော့ရှင်... ❤️"
+        ];
+
+        function rejectLove() {
+            noClickCount++;
+            const noBtn = document.getElementById("noBtn");
+            const questionText = document.getElementById("questionText");
+            const yesBtn = document.getElementById("yesBtn");
+
+            if (noClickCount < messages.length) {
+                questionText.innerText = messages[noClickCount - 1];
+                // Yes ခလုတ်ကို ပိုကြီးလာစေရန်
+                let currentSize = window.getComputedStyle(yesBtn).fontSize;
+                yesBtn.style.fontSize = (parseFloat(currentSize) + 4) + "px";
+            } else {
+                noBtn.style.display = "none"; // No ခလုတ် ပျောက်သွားမည်
+            }
+        }
+
+        function acceptLove() {
+            document.getElementById("questionSection").style.display = "none";
+            document.getElementById("messageCard").style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
